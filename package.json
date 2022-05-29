@@ -1,0 +1,27 @@
+{
+  "name": "employee-generator",
+  "version": "1.0.0",
+  "description": "An app that takes user input from the command line, and generates an HTML page",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheDecoder007/employee-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheDecoder007/employee-generator/issues"
+  },
+  "homepage": "https://github.com/TheDecoder007/employee-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jest": "^28.1.0"
+  }
+}
