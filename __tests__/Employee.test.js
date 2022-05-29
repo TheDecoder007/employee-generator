@@ -15,8 +15,12 @@ test('creates an new employee object', () => {
     expect(employee.role).toEqual(expect.stringContaining(employee.role));
 });
 
-test('gets employee name as an object', () => {
+test('gets employee info as an object', () => {
     const employee = new Employee('Joe');
 
+    expect(employee.getId()).toEqual(expect.Number(employee.id));
     expect(employee.getName()).toEqual(expect.stringContaining(employee.name));
+    expect(employee.getEmail()).toEqual(expect.stringContaining(employee.email));
+    expect(employee.getRole()).toEqual(expect.stringContaining(employee.role));
+
 });

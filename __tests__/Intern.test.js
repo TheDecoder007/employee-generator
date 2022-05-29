@@ -13,3 +13,10 @@ test('creates an new intern object', () => {
     expect(intern.role).toEqual(expect.stringContaining(intern.role));
     expect(intern.school).toEqual(expect.stringContaining(intern.school));
 });
+
+test('Gets Intern school', () => {
+    const intern = new Intern('Joe');
+    
+    expect(intern.getSchool()).toEqual(expect.stringContaining(intern.school));
+
+});

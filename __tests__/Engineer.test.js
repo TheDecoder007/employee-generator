@@ -13,3 +13,10 @@ test('creates an new engineer object', () => {
     expect(engineer.role).toEqual(expect.stringContaining(engineer.role));
     expect(engineer.github).toEqual(expect.stringContaining(engineer.github));
 });
+
+test('Gets Engineer GitHub name', () => {
+    const engineer = new Engineer('Joe');
+    
+    expect(engineer.getGitHub()).toEqual(expect.stringContaining(engineer.github));
+
+});

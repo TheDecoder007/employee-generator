@@ -13,3 +13,10 @@ test('creates an new manager object', () => {
     expect(manager.role).toEqual(expect.stringContaining(manager.role));
     expect(manager.officenumber).toEqual(expect.any(Number));
 });
+
+test('Gets Manager email', () => {
+    const manager = new Manager('Joe');
+    
+    expect(manager.getEmail()).toEqual(expect.stringContaining(manager.email));
+
+});
