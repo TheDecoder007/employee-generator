@@ -27,8 +27,68 @@ const promptEngineer = portfolioData => {
               return false
             }
           }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your engineers email? (Required)',
+            validate: emailInput => {
+              if (emailInput) {
+                return true;
+              } else {
+                console.log('Please enter your engineers email!');
+                return false
+              }
+            }
+          },
+          {
+            type: 'number',
+            name: 'id',
+            message: 'What is your engineers id? (Required)',
+          
+          },
+          {
+              type: 'input',
+              name: 'github',
+              message: "What is your engineers GitHub name?",
+              validate: gitInput => {
+                if (gitInput) {
+                  return true;
+                } else {
+                  console.log('Please enter your engineers GitHub!');
+                  return false
+                }
+              }
+          },
+          {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: 'Would you like to add another employee?',
+            default: true
         }
-    ])
+  ])
+      .then(projectData => {
+          // portfolioData.projects.push(projectData);
+          if (projectData.confirmAddEmployee) {
+              return inquirer.prompt ([
+                  {
+                      type: 'list',
+                      name: 'employeeChoice',
+                      message: 'What kind of employee do you want to add?',
+                      choices: ['Engineer', 'Intern']
+                  }
+              ])
+              .then((answer => {
+           if (answer.employeeChoice === 'Engineer') {
+              promptEngineer();
+          } else if (answer.employeeChoice === 'Intern') {
+              promptIntern();            
+            } 
+          
+       }));
+     }
+  });
+    
 };
 
 const promptIntern = portfolioData => {
@@ -45,17 +105,77 @@ const promptIntern = portfolioData => {
               return false
             }
           }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your interns email? (Required)',
+            validate: emailInput => {
+              if (emailInput) {
+                return true;
+              } else {
+                console.log('Please enter your interns email!');
+                return false
+              }
+            }
+          },
+          {
+            type: 'number',
+            name: 'id',
+            message: 'What is your interns id? (Required)',
+          
+          },
+          {
+              type: 'input',
+              name: 'school',
+              message: "What is your interns school name?",
+              validate: gitInput => {
+                if (gitInput) {
+                  return true;
+                } else {
+                  console.log('Please enter your interns school!');
+                  return false
+                }
+              }
+          },
+          {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: 'Would you like to add another employee?',
+            default: true
         }
-    ])
+  ])
+      .then(projectData => {
+          // portfolioData.projects.push(projectData);
+          if (projectData.confirmAddEmployee) {
+              return inquirer.prompt ([
+                  {
+                      type: 'list',
+                      name: 'employeeChoice',
+                      message: 'What kind of employee do you want to add?',
+                      choices: ['Engineer', 'Intern']
+                  }
+              ])
+              .then((answer => {
+           if (answer.employeeChoice === 'Engineer') {
+              promptEngineer();
+          } else if (answer.employeeChoice === 'Intern') {
+              promptIntern();            
+            } 
+          
+       }));
+     }
+  });
+    
 };
 
 
 
 const promptProject = portfolioData => {
     console.log(`
-    ==================
-    Add a new Employee
-    ==================
+    ===================
+    Add a new Employees
+    ===================
     `);
 
 //if theres no employees array property, create one
@@ -140,15 +260,12 @@ const promptProject = portfolioData => {
              if (answer.employeeChoice === 'Engineer') {
                 promptEngineer();
             } else if (answer.employeeChoice === 'Intern') {
-                promptIntern();
+                promptIntern();            
+              } 
             
-            
-              } else {
-                return portfolioData;
-            }
-                }));
-            }
-        });
+         }));
+       }
+    });
 
 };
 promptProject();
