@@ -13,6 +13,7 @@ const inquirer = require('inquirer');
 //ex promptProject, portfolioData, projects etc
 
 const promptEngineer = portfolioData => {
+  
 
     return inquirer.prompt ([
         {
@@ -68,7 +69,7 @@ const promptEngineer = portfolioData => {
         }
   ])
       .then(projectData => {
-          // portfolioData.projects.push(projectData);
+          //portfolioData.projects.push(projectData);
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
                   {
@@ -146,7 +147,7 @@ const promptIntern = portfolioData => {
         }
   ])
       .then(projectData => {
-          // portfolioData.projects.push(projectData);
+          //portfolioData.projects.push(projectData);
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
                   {
@@ -169,20 +170,7 @@ const promptIntern = portfolioData => {
     
 };
 
-
-
-const promptProject = portfolioData => {
-    console.log(`
-    ===================
-    Add a new Employees
-    ===================
-    `);
-
-//if theres no employees array property, create one
-    // if (!portfolioData.projects) {
-    //     portfolioData.projects = [];
-    // }
-//adding "project" to projects array (portfolioData)
+    const promptManager = portfolioData => {
     return inquirer.prompt ([
 
     //MANAGER
@@ -246,7 +234,7 @@ const promptProject = portfolioData => {
           }
     ])
         .then(projectData => {
-            // portfolioData.projects.push(projectData);
+            //portfolioData.projects.push(projectData);
             if (projectData.confirmAddEmployee) {
                 return inquirer.prompt ([
                     {
@@ -268,4 +256,19 @@ const promptProject = portfolioData => {
     });
 
 };
+
+const promptProject = portfolioData => {
+  console.log(`
+  ===================
+  Add a new Employees
+  ===================
+  `);
+
+//if theres no employees array property, create one
+  // if (!portfolioData.projects) {
+      // portfolioData.projects = [];
+  // }
+promptManager();
+}
+
 promptProject();
