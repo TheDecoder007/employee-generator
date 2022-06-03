@@ -19,6 +19,13 @@ class Team {
     // this.engineer = new Engineer;
     // this.intern = new Intern;
     // this.portfolioData.projects = [];
+
+    // this.manager = [];
+    // this.name;
+    // this.email = Employee.email;
+    // this.id = Employee.id;
+    // this.officenumber = Employee.officenumber;
+
   }
 
  promptProject() {
@@ -99,7 +106,23 @@ promptManager() {
             default: true
         }
   ])
+
+  // .then(({ name }) => {
+  //   this.manager = new Employee(name);
+  // })
+  //   .then(({ email }) => {
+  //     this.manager = new Employee(email);
+  //   })
+  //     .then(({ id }) => {
+  //       this.manager = new Employee(id);
+  //     })
+  //       .then(({ officenumber }) => {
+  //         this.manager = new Employee(officenumber);
+  //       })
+
+
       .then(projectData => {
+        // this.manager.push(new Employee(Manager));
           // portfolioData.projects.push(projectData);
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
