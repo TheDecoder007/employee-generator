@@ -3,7 +3,7 @@ const fs = require('fs');
 //from portfolio-generator
 const writeFile = fileContent => {
     return new Promise((resolve, reject) => {
-        fs.writeFile('../dist/index.html', fileContent, err => {
+        fs.writeFile('./dist/index.html', fileContent, err => {
             // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
             if (err) {
               reject(err);
@@ -22,7 +22,7 @@ const writeFile = fileContent => {
 
 const copyFile = () => {
     return new Promise((resolve, reject) => {
-        fs.copyFile('./style.css', '../dist/style.css', err => {
+        fs.copyFile('./style.css', './dist/style.css', err => {
             if (err) {
               reject(err);
               return;
