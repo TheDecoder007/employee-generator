@@ -5,6 +5,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+let employeeArray = [];
 // const generatePage = require('./src/page-template.js');
 // const { writeFile, copyFile } = require('./src/generate-site');
 
@@ -37,9 +38,9 @@ class Team {
 
 //if theres no employees array property, create one
   // if (!portfolioData.projects) {
-      // portfolioData.projects = [];
+  //     portfolioData.projects = [];
   // }
-this.promptManager();
+  this.promptManager();
 };
 
 promptManager() {
@@ -124,6 +125,9 @@ promptManager() {
       .then(projectData => {
         // this.manager.push(new Employee(Manager));
           // portfolioData.projects.push(projectData);
+          employeeArray.push(projectData);
+          // console.log(projectData);
+          console.log(employeeArray);
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
                   {
