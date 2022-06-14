@@ -4,11 +4,12 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const { writeFile } = require('./src/generate-site');
+// const { writeFile } = require('./src/generate-site');
 
 let employeeArray = [];
-// const generatePage = require('./src/page-template.js');
-// const { writeFile, copyFile } = require('./src/generate-site');
+const generatePage = require('./src/page-template.js');
+// const pageHTML = generatePage(Team);
+const { writeFile, copyFile } = require('./src/generate-site');
 
 //function to run inquirer for Employee questions
 //code snippets from portfolio-generator. names will need to be changed
@@ -21,20 +22,22 @@ class Team {
     // this.engineer = new Engineer;
     // this.intern = new Intern;
     // this.portfolioData.projects = [];
-    this.role; 
-    // this.manager = [];
-    // this.name;
     // this.email = Employee.email;
     // this.id = Employee.id;
     // this.officenumber = Employee.officenumber;
-
+    // this.manager = [];
+    this.role; 
+    this.name;
+    this.id;
+    this.email;
+    
   }
 
  promptProject() {
   console.log(`
-  ===================
-  Add a new Employees
-  ===================
+  ==================
+  Add a new Employee
+  ==================
   `);
 
 //if theres no employees array property, create one
@@ -319,22 +322,46 @@ promptManager() {
     
 };
 }
-new Team().promptProject()
-  // .then(employeeArray => {
-  //   return generatePage(employeeArray);
-  // })
-  // .then(pageHTML => {
-  //   return writeFile(pageHTML);
-  // })
-  // .then(writeFileResponse => {
-  //   console.log(writeFileResponse);
-  //   return copyFile();
-  // })
-  // .then(copyFileResponse => {
-  //   console.log(copyFileResponse);
-  // })
-  // .catch(err => {
-  //   console.log(err);
-  // });
+
+
+
+const pageHTML = generatePage(Team);
+// //writes/creates new HTML in dist folder
+fs.writeFile('./dist/index.html', pageHTML, err => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log('Page created! Check out index.html in this directory to see it!');
+  
+  // //copies style.css and creates file in dist folder      
+  fs.copyFile('./src/style.css', './dist/style.css', err => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log('Style sheet copied successfully!');
+  });
+});
+
+new Team();
+
+
+// .then(employeeArray => {
+//   return generatePage(employeeArray);
+// })
+// .then(pageHTML => {
+//   return writeFile(pageHTML);
+// })
+// .then(writeFileResponse => {
+//   console.log(writeFileResponse);
+//   return copyFile();
+// })
+// .then(copyFileResponse => {
+//   console.log(copyFileResponse);
+// })
+// .catch(err => {
+//   console.log(err);
+// });
 
 module.exports = Team;
