@@ -33,7 +33,7 @@ class Team {
     
   }
 
- promptProject() {
+ promptProject = () => {
   console.log(`
   ==================
   Add a new Employee
@@ -47,7 +47,7 @@ class Team {
   this.promptManager();
 };
 
-promptManager() {
+promptManager= () => {
   
   return inquirer.prompt ([
 
@@ -323,6 +323,7 @@ promptManager() {
 };
 }
 
+new Team().promptProject();
 
 
 const pageHTML = generatePage(Team);
@@ -344,7 +345,6 @@ fs.writeFile('./dist/index.html', pageHTML, err => {
   });
 });
 
-new Team();
 
 
 // .then(employeeArray => {
