@@ -4,7 +4,9 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const { writeFile } = require('./src/generate-site');
 
+let employeeArray = [];
 // const generatePage = require('./src/page-template.js');
 // const { writeFile, copyFile } = require('./src/generate-site');
 
@@ -19,7 +21,7 @@ class Team {
     // this.engineer = new Engineer;
     // this.intern = new Intern;
     // this.portfolioData.projects = [];
-
+    this.role; 
     // this.manager = [];
     // this.name;
     // this.email = Employee.email;
@@ -37,9 +39,9 @@ class Team {
 
 //if theres no employees array property, create one
   // if (!portfolioData.projects) {
-      // portfolioData.projects = [];
+  //     portfolioData.projects = [];
   // }
-this.promptManager();
+  this.promptManager();
 };
 
 promptManager() {
@@ -122,8 +124,12 @@ promptManager() {
 
 
       .then(projectData => {
-        // this.manager.push(new Employee(Manager));
+        this.manager = new Employee(Manager);
+        this.role = Manager;
           // portfolioData.projects.push(projectData);
+          employeeArray.push(projectData);
+          // console.log(projectData);
+          console.log(employeeArray);
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
                   {
@@ -204,6 +210,10 @@ promptManager() {
         }
   ])
       .then(projectData => {
+        this.engineer = new Employee(Engineer);
+        this.role = Engineer;
+          employeeArray.push(projectData);
+          console.log(employeeArray);
           // portfolioData.projects.push(projectData);
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
@@ -282,6 +292,10 @@ promptManager() {
         }
   ])
       .then(projectData => {
+        this.intern = new Employee(Intern);
+        this.role = Intern;
+        employeeArray.push(projectData);
+        console.log(employeeArray);
           // portfolioData.projects.push(projectData);
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
@@ -305,6 +319,22 @@ promptManager() {
     
 };
 }
-new Team().promptProject();
+new Team().promptProject()
+  // .then(employeeArray => {
+  //   return generatePage(employeeArray);
+  // })
+  // .then(pageHTML => {
+  //   return writeFile(pageHTML);
+  // })
+  // .then(writeFileResponse => {
+  //   console.log(writeFileResponse);
+  //   return copyFile();
+  // })
+  // .then(copyFileResponse => {
+  //   console.log(copyFileResponse);
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  // });
 
 module.exports = Team;
