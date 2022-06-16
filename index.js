@@ -216,7 +216,7 @@ promptManager= () => {
       .then(projectData => {
         var newEngineer = new Engineer(projectData.name, projectData.id,projectData.email,projectData.github)
         console.log(newEngineer.getRole())
-          employeeArray.push(projectData);
+          employeeArray.push(newEngineer);
           console.log(employeeArray);
 
           if (projectData.confirmAddEmployee) {
@@ -298,7 +298,7 @@ promptManager= () => {
       .then(projectData => {
         var newIntern = new Intern(projectData.name, projectData.id,projectData.email,projectData.school)
         console.log(newIntern.getRole())
-        employeeArray.push(projectData);
+        employeeArray.push(newIntern);
         console.log(employeeArray);
 
           if (projectData.confirmAddEmployee) {
