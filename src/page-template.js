@@ -1,32 +1,62 @@
+const generateDiv = (employee) => {
+  // switch case function
+  switch (employee.getRole()){
+  case "Manager": 
+    return `<div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">${employee.getRole()}</h3>
+            
+            <h5 class="portfolio-languages">
+              ${employee.name}
+            </h5>
+            <p>${employee.id}</p>
+            <p>${employee.email}</p>
+            <p>${employee.officenumber}</p>
+
+            </div> `
+    break;
+    case "Engineer": 
+    return `<div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">${employee.getRole()}</h3>
+            
+            <h5 class="portfolio-languages">
+              ${employee.name}
+            </h5>
+            <p>${employee.id}</p>
+            <p>${employee.email}</p>
+            <p>${employee.github}</p>
+
+            </div> `
+    break;
+    case "Intern": 
+    return `<div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">${employee.getRole()}</h3>
+            
+            <h5 class="portfolio-languages">
+              ${employee.name}
+            </h5>
+            <p>${employee.id}</p>
+            <p>${employee.email}</p>
+            <p>${employee.school}</p>
+            </div> `
+    break;
 
 
- const generateProjects = employeeArray => {
+}
+}
+
+ const generateProjects = (employeeArray) => {
+  console.log(employeeArray[0].getRole())
   return `
       <section class="my-3" id="portfolio">
       <div class="flex-row justify-space-between">
+  if Employee Array for each element if the elemtn.getRole()=== Manager return a Manager div
+  if element.getRole()=="Engineer" reutnr an HTMl Div with the engineering needs
+      ${employeeArray.forEach( element => generateDiv(element)) }
+      ${employeeArray.forEach( Object => generateDiv(Object)) }
 
-      ${employeeArray    
-        .map(({ role, name, id, email, officenumber, github, school }) => {
-          return `
-
-          <div class="col-12 mb-2 bg-dark text-light p-3">
-            <h3 class="portfolio-item-title text-light">${role}</h3>
-            
-            <h5 class="portfolio-languages">
-              ${name.join}
-            </h5>
-            <p>${id}</p>
-            <p>${email}</p>
-            <p>${officenumber}</p>
-            <p>${github}</p>
-            <p>${school}</p> 
-            </div> 
-            `;
-          })
-          .join('')} 
           </div>  
           </section>     
-      }
+      
       `;
     };
 
@@ -71,3 +101,5 @@ module.exports = templateData => {
   </html>
   `;
 };
+
+module.exports = generateProjects

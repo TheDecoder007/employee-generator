@@ -1,10 +1,9 @@
 const inquirer = require('inquirer');
-
+const generateProjects = require('./src/page-template')
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-// const { writeFile } = require('./src/generate-site');
 
 let employeeArray = [];
 const generatePage = require('./src/page-template.js');
@@ -21,7 +20,6 @@ class Team {
     // this.manager = new Manager;
     // this.engineer = new Engineer;
     // this.intern = new Intern;
-    // this.portfolioData.projects = [];
     // this.email = Employee.email;
     // this.id = Employee.id;
     // this.officenumber = Employee.officenumber;
@@ -127,10 +125,10 @@ promptManager= () => {
 
 
       .then(projectData => {
-        this.manager = new Employee(Manager);
-        this.role = Manager;
-          // portfolioData.projects.push(projectData);
-          employeeArray.push(projectData);
+        var newManager = new Manager(projectData.name, projectData.id,projectData.email,projectData.officenumber)
+        console.log(newManager.getRole())
+
+        employeeArray.push(newManager);
           // console.log(projectData);
           console.log(employeeArray);
           if (projectData.confirmAddEmployee) {
@@ -150,6 +148,9 @@ promptManager= () => {
             } 
           
        }));
+     } else if (!projectData.confirmAddEmployee){
+      var result = generateProjects(employeeArray)
+      console.log(result)
      }
   });
 
@@ -213,11 +214,11 @@ promptManager= () => {
         }
   ])
       .then(projectData => {
-        this.engineer = new Employee(Engineer);
-        this.role = Engineer;
+        var newEngineer = new Engineer(projectData.name, projectData.id,projectData.email,projectData.github)
+        console.log(newEngineer.getRole())
           employeeArray.push(projectData);
           console.log(employeeArray);
-          // portfolioData.projects.push(projectData);
+
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
                   {
@@ -295,11 +296,11 @@ promptManager= () => {
         }
   ])
       .then(projectData => {
-        this.intern = new Employee(Intern);
-        this.role = Intern;
+        var newIntern = new Intern(projectData.name, projectData.id,projectData.email,projectData.school)
+        console.log(newIntern.getRole())
         employeeArray.push(projectData);
         console.log(employeeArray);
-          // portfolioData.projects.push(projectData);
+
           if (projectData.confirmAddEmployee) {
               return inquirer.prompt ([
                   {
@@ -326,24 +327,24 @@ promptManager= () => {
 new Team().promptProject();
 
 
-const pageHTML = generatePage(Team);
-// //writes/creates new HTML in dist folder
-fs.writeFile('./dist/index.html', pageHTML, err => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log('Page created! Check out index.html in this directory to see it!');
+// const pageHTML = generatePage(Team);
+// // //writes/creates new HTML in dist folder
+// fs.writeFile('./dist/index.html', pageHTML, err => {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
+//   console.log('Page created! Check out index.html in this directory to see it!');
   
-  // //copies style.css and creates file in dist folder      
-  fs.copyFile('./src/style.css', './dist/style.css', err => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log('Style sheet copied successfully!');
-  });
-});
+//   // //copies style.css and creates file in dist folder      
+//   fs.copyFile('./src/style.css', './dist/style.css', err => {
+//     if (err) {
+//       console.log(err);
+//       return;
+//     }
+//     console.log('Style sheet copied successfully!');
+//   });
+// });
 
 
 
