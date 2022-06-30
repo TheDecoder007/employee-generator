@@ -1,42 +1,48 @@
-const generateDiv = (employee) => {
+var html = ""
+const generateDiv = (anEmployee) => {
   // switch case function
-  switch (employee.getRole()){
-  case "Manager": 
-    return `<div class="col-12 mb-2 bg-dark text-light p-3">
-            <h3 class="portfolio-item-title text-light">${employee.getRole()}</h3>
+  console.log("At individual employee function")
+  console.log(anEmployee.getRole())
+  switch (anEmployee){
+  case anEmployee.getRole() == "Manager": 
+          var result = `<div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">Manager</h3>
             
             <h5 class="portfolio-languages">
-              ${employee.name}
+              ${anEmployee.name}
             </h5>
-            <p>${employee.id}</p>
-            <p>${employee.email}</p>
-            <p>${employee.officenumber}</p>
+            <p>${anEmployee.id}</p>
+            <p>${anEmployee.email}</p>
+            <p>${anEmployee.officenumber}</p>
+            </div> `
+            console.log("manager made")
+            console.log(result)
+    return html += result
+    break;
+    case anEmployee.getRole() == "Engineer": 
+      var result = `<div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">${anEmployee.getRole()}</h3>
+            
+            <h5 class="portfolio-languages">
+              ${anEmployee.name}
+            </h5>
+            <p>${anEmployee.id}</p>
+            <p>${anEmployee.email}</p>
+            <p>${anEmployee.github}</p>
 
             </div> `
+            return html+= result
     break;
-    case "Engineer": 
-    return `<div class="col-12 mb-2 bg-dark text-light p-3">
-            <h3 class="portfolio-item-title text-light">${employee.getRole()}</h3>
+    case anEmployee.getRole() == "Intern": 
+    return html+=`<div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">${anEmployee.getRole()}</h3>
             
             <h5 class="portfolio-languages">
-              ${employee.name}
+              ${anEmployee.name}
             </h5>
-            <p>${employee.id}</p>
-            <p>${employee.email}</p>
-            <p>${employee.github}</p>
-
-            </div> `
-    break;
-    case "Intern": 
-    return `<div class="col-12 mb-2 bg-dark text-light p-3">
-            <h3 class="portfolio-item-title text-light">${employee.getRole()}</h3>
-            
-            <h5 class="portfolio-languages">
-              ${employee.name}
-            </h5>
-            <p>${employee.id}</p>
-            <p>${employee.email}</p>
-            <p>${employee.school}</p>
+            <p>${anEmployee.id}</p>
+            <p>${anEmployee.email}</p>
+            <p>${anEmployee.school}</p>
             </div> `
     break;
 
@@ -44,15 +50,18 @@ const generateDiv = (employee) => {
 }
 }
 
- const generateProjects = (employeeArray) => {
-  console.log(employeeArray[0].getRole())
+
+ const generateProjects = async (employeeArray) => {
+  console.log("At generate projects function")
+  await employeeArray.forEach( element =>  generateDiv(element))
+  console.log("html right below")
+  console.log(html)
+  console.log("Added everything to HTML")
   return `
       <section class="my-3" id="portfolio">
       <div class="flex-row justify-space-between">
-  if Employee Array for each element if the elemtn.getRole()=== Manager return a Manager div
-  if element.getRole()=="Engineer" reutnr an HTMl Div with the engineering needs
-      ${employeeArray.forEach( element => generateDiv(element)) }
-      ${employeeArray.forEach( Object => generateDiv(Object)) }
+      
+    
 
           </div>  
           </section>     
@@ -61,10 +70,11 @@ const generateDiv = (employee) => {
     };
 
     //export function to generate entire page
-module.exports = templateData => {
-  //destructure page data by section
-  const { projects, about, ...header } = templateData;
-
+module.exports = templateData = async (employeeArray) => {
+  response = await employeeArray.forEach( element =>  generateDiv(element))
+  console.log(response)
+  console.log(html)
+  //destructure page data by sectio
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -82,24 +92,27 @@ module.exports = templateData => {
   <body>
     <header>
       <div class="container flex-row justify-space-between align-center py-3">
-        <h1 class="page-title text-secondary bg-dark py-2 px-3">${header.role}</h1>
+        <h1 class="page-title text-secondary bg-dark py-2 px-3">$Team</h1>
         <nav class="flex-row">
-        <h3 class="page-title text-secondary bg-dark py-2 px-3">${header.name}</h3>
-        
-
+        <h3 class="page-title text-secondary bg-dark py-2 px-3">$Team</h3>
         </nav>
       </div>
     </header>
     <main class="container my-5">
-          
-          ${generateProjects(projects)}
+    <section class="my-3" id="portfolio">
+    <div class="flex-row justify-space-between">
+    
+  
+  
+    ${html}
+
+        </div>  
+        </section>
     </main>
     <footer class="container text-center py-3">
-      <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
+      <h3 class="text-dark">&copy; ${new Date().getFullYear()} by Ryan</h3>
     </footer>
   </body>
   </html>
   `;
 };
-
-module.exports = generateProjects

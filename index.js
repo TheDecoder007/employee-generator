@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const generateProjects = require('./src/page-template')
+const templateData = require('./src/page-template')
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -110,20 +110,6 @@ promptManager= () => {
         }
   ])
 
-  // .then(({ name }) => {
-  //   this.manager = new Employee(name);
-  // })
-  //   .then(({ email }) => {
-  //     this.manager = new Employee(email);
-  //   })
-  //     .then(({ id }) => {
-  //       this.manager = new Employee(id);
-  //     })
-  //       .then(({ officenumber }) => {
-  //         this.manager = new Employee(officenumber);
-  //       })
-
-
       .then(projectData => {
         var newManager = new Manager(projectData.name, projectData.id,projectData.email,projectData.officenumber)
         console.log(newManager.getRole())
@@ -149,7 +135,7 @@ promptManager= () => {
           
        }));
      } else if (!projectData.confirmAddEmployee){
-      var result = generateProjects(employeeArray)
+      var result = templateData(employeeArray)
       console.log(result)
      }
   });
@@ -236,6 +222,9 @@ promptManager= () => {
             } 
           
        }));
+     } else if (!projectData.confirmAddEmployee){
+      var result = templateData(employeeArray)
+      console.log(result)
      }
   });
     
@@ -318,6 +307,9 @@ promptManager= () => {
             } 
           
        }));
+     } else if (!projectData.confirmAddEmployee){
+      var result = templateData(employeeArray)
+      console.log(result)
      }
   });
     
